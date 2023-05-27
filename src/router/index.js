@@ -1,16 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomeComponent from '../components/HomeComponent.vue'
-import CreateComponent from '../components/CreateComponent.vue'
-import IndexComponent from '../components/IndexComponent.vue'
-import EditComponent from '../components/EditComponent.vue'
-import CesiumViewer from '../components/CesiumViewer.vue'
+import HomeView from '../views/TheHome.vue'
+import TestTaskList from '../views/TestTaskList.vue'
+import TestLogin from '../views/TestLogin.vue'
+import CesiumViewer from '../views/CesiumViewer.vue'
 
 const routes = [
   {
     name: 'home',
     path: '/',
-    component: HomeComponent
+    component: HomeView
   },
   {
     name: 'CesiumViewer',
@@ -18,19 +17,14 @@ const routes = [
     component: CesiumViewer
   },
   {
-    name: 'create',
-    path: '/create',
-    component: CreateComponent
+    name: 'list',
+    path: '/list',
+    component: TestTaskList
   },
   {
-    name: 'posts',
-    path: '/posts',
-    component: IndexComponent
-  },
-  {
-    name: 'edit',
-    path: '/edit/:id',
-    component: EditComponent
+    name: 'login',
+    path: '/login',
+    component: TestLogin
   }
 ]
 

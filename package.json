@@ -13,11 +13,15 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "cesium": "^1.105.2",
+    "isomorphic-ws": "^5.0.0",
     "pinia": "^2.0.36",
+    "simpleddp": "^2.2.4",
+    "simpleddp-plugin-login": "^4.0.2",
     "vue": "^3.3.2",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.2.0",
-    "vuetify": "^3.3.1"
+    "vuetify": "^3.3.1",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
