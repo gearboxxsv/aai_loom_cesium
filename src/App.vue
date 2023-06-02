@@ -10,6 +10,7 @@ import TheSnackbar from '@/components/TheSnackbar.vue'
       <v-btn :to="{ path: '/' }">Home</v-btn>
       <v-btn to="list">Tasks Test</v-btn>
       <v-btn to="login">Login Test</v-btn>
+      <v-btn to="chat">FormKit Test</v-btn>
       <v-btn to="cesium">Cesium</v-btn>
     </v-app-bar>
     <v-main>

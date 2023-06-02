@@ -6,10 +6,10 @@
         <v-card-text>
           <v-form ref="loginForm" validate-on="submit lazy" @submit.prevent="login">
             <v-text-field
-              v-model="username"
-              :rules="usernameRules"
-              label="Username"
-              type="text"
+              v-model="email"
+              :rules="emailRules"
+              label="Email"
+              type="email"
             ></v-text-field>
             <v-text-field
               v-model="password"
@@ -42,9 +42,9 @@ export default {
   data() {
     return {
       loading: false,
-      username: '',
-      password: '',
-      usernameRules: [(v) => !!v || 'Username cannot be blank'],
+      email: 'gdeeds@tegbiz.com',
+      password: '1234567890',
+      emailRules: [(v) => !!v || 'Email cannot be blank'],
       passwordRules: [(v) => !!v || 'Password cannot be blank']
     }
   },
@@ -57,10 +57,10 @@ export default {
         //const alertStore = useAlertStore()
         const snackbarStore = useSnackbarStore()
         authStore
-          .login(this.username, this.password)
+          .login(this.email, this.password)
           .then(() => {
             //alertStore.success(this.username + ' is now logged in')
-            snackbarStore.success("Success! User '" + this.username + "' is now logged in.")
+            snackbarStore.success("Success! User '" + this.email + "' is now logged in.")
           })
           .catch((error) => {
             //alertStore.error(error)

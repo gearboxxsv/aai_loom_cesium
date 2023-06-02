@@ -12,6 +12,8 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
+import { plugin, defaultConfig } from '@formkit/vue'
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -30,5 +32,6 @@ app.use(
     }
   })
 )
+app.use(plugin, defaultConfig)
 
 app.mount('#app')

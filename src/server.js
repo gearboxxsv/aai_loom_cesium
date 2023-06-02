@@ -1,9 +1,9 @@
 import simpleDDP from 'simpleddp'
-const simpleDDPLogin = require('simpleddp-plugin-login').simpleDDPLogin
+import { simpleDDPLogin } from 'simpleddp-plugin-login'
 import ws from 'isomorphic-ws'
 
 let opts = {
-  endpoint: 'ws://someserver.com/websocket',
+  endpoint: 'wss://airmap.loom.aero/websocket',
   SocketConstructor: ws,
   reconnectInterval: 5000
 }
