@@ -1,32 +1,42 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterView } from 'vue-router'
-import TheAlert from '@/components/TheAlert.vue'
-import TheSnackbar from '@/components/TheSnackbar.vue'
+import Menubar from 'primevue/menubar';
+
+const items = ref([
+  {
+    label: 'Home',
+    to: { path: '/'}
+  },
+  {
+    label: 'Log In',
+    to: { path: '/login'}
+  },
+  {
+    label: 'FormKit Test',
+    to: { path: '/formkit'}
+  },
+  {
+    label: 'Cesium Viewer',
+    to: { path: '/cesium'}
+  }
+])
 </script>
 
 <template>
-  <v-layout>
-    <v-app-bar>
-      <v-btn :to="{ path: '/' }">Home</v-btn>
-      <v-btn to="list">Tasks Test</v-btn>
-      <v-btn to="login">Login Test</v-btn>
-      <v-btn to="chat">FormKit Test</v-btn>
-      <v-btn to="cesium">Cesium</v-btn>
-    </v-app-bar>
-    <v-main>
-      <TheAlert />
-      <TheSnackbar />
-      <v-container fill-height id="appWindow" class="justify-center align-center">
-        <RouterView />
-      </v-container>
-    </v-main>
-  </v-layout>
+    <Menubar :model="items" />
+    <main>
+      <RouterView />
+      <PToast />
+    </main>
 </template>
 
-<style>
-#appWindow {
+<style scoped>
+main {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
   background-color: black;
-  color: sandybrown;
-  min-height: 600px;
 }
 </style>

@@ -6,32 +6,42 @@ import router from './router'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
 
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice'
+import Button from 'primevue/button'
+import Toast from 'primevue/toast'
+import Message from 'primevue/message'
+import ProgressSpinner from 'primevue/progressspinner'
+import Dialog from 'primevue/dialog'
 
 import { plugin, defaultConfig } from '@formkit/vue'
+import { primeInputs } from '@sfxcode/formkit-primevue'
+
+import '@/assets/main.css'
+import 'primevue/resources/themes/lara-light-teal/theme.css'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css'
 
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(VueAxios, axios)
+app.use(PrimeVue)
+app.use(ToastService)
 app.use(
-  createVuetify({
-    components,
-    directives,
-    icons: {
-      defaultSet: 'mdi',
-      aliases,
-      sets: {
-        mdi
-      }
-    }
+  plugin,
+  defaultConfig({
+    theme: 'genesis',
+    inputs: primeInputs
   })
 )
-app.use(plugin, defaultConfig)
+
+app.component('PButton', Button)
+app.component('PToast', Toast)
+app.component('PMessage', Message)
+app.component('PSpinner', ProgressSpinner)
+app.component('PDialog', Dialog)
 
 app.mount('#app')

@@ -11,18 +11,21 @@
   },
   "dependencies": {
     "@formkit/vue": "^0.18.0-d8042c7",
+    "@sfxcode/formkit-primevue": "^1.1.5",
     "@turf/helpers": "^6.5.0",
     "axios": "^1.4.0",
-    "bootstrap": "^5.2.3",
     "cesium": "^1.105.2",
     "isomorphic-ws": "^5.0.0",
     "pinia": "^2.0.36",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.29.2",
     "simpleddp": "^2.2.4",
     "simpleddp-plugin-login": "^4.0.2",
+    "vee-validate": "^4.9.6",
     "vue": "^3.3.2",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.2.0",
-    "vuetify": "^3.3.1",
     "ws": "^8.13.0"
   },
   "devDependencies": {

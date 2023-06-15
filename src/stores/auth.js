@@ -1,16 +1,6 @@
-import simpleDDP from 'simpleddp'
-import { simpleDDPLogin } from 'simpleddp-plugin-login'
-import ws from 'isomorphic-ws'
-let opts = {
-  endpoint: 'wss://airmap.loom.aero/websocket',
-  SocketConstructor: ws,
-  reconnectInterval: 5000
-}
-const server = new simpleDDP(opts, [simpleDDPLogin])
-
+import { server } from '../server'
 import { defineStore } from 'pinia'
 // import { router } from '../router/index'
-// import { useAlertStore } from '../stores/alert'
 
 export const useAuthStore = defineStore({
   id: 'auth',
@@ -33,7 +23,6 @@ export const useAuthStore = defineStore({
       })
 */
     async login(email, password) {
-      console.log({ password, email })
       try {
         let user = await server.login({
           password,
@@ -50,10 +39,10 @@ export const useAuthStore = defineStore({
         // redirect to previous url or default to home page
         // router.push(this.returnUrl || '/')
         console.log('User is logged in')
+        return email
       } catch (error) {
-        //const alertStore = useAlertStore()
-        //alertStore.error(error)
         console.log(error)
+        throw Error(error.message)
       }
     }
     /*

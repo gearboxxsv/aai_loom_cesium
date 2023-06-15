@@ -1,76 +1,43 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-card style="max-width: 500px; margin: auto">
-        <v-card-title>Login</v-card-title>
-        <v-card-text>
-          <v-form ref="loginForm" validate-on="submit lazy" @submit.prevent="login">
-            <v-text-field
-              v-model="email"
-              :rules="emailRules"
-              label="Email"
-              type="email"
-            ></v-text-field>
-            <v-text-field
-              v-model="password"
-              :rules="passwordRules"
-              label="Password"
-              type="password"
-            ></v-text-field>
-            <v-btn
-              block
-              color="blue-darken-3"
-              type="submit"
-              value="login"
-              :loading="loading"
-              class="mt-5"
-              >Login</v-btn
-            >
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div class="flex flex-column justify-content-center mb-3">
+    <h2>Log In</h2>
+    <form
+      @submit.prevent="login"
+      class="flex flex-column gap-3 p-3"
+      style="background-color: white"
+    >
+      <label for="email">Email</label>
+      <InputText id="email" v-model="email" type="text" />
+
+      <label for="password">Password</label>
+      <Password id="password" v-model="password" type="password" :feedback="false" />
+
+      <PButton type="submit" label="Log In" class="mt-3" />
+    </form>
+  </div>
 </template>
 
-<script>
-//import { useAlertStore } from '../stores/alert'
-import { useSnackbarStore } from '../stores/snackbar'
+<script setup>
+import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth'
 
-export default {
-  data() {
-    return {
-      loading: false,
-      email: 'gdeeds@tegbiz.com',
-      password: '1234567890',
-      emailRules: [(v) => !!v || 'Email cannot be blank'],
-      passwordRules: [(v) => !!v || 'Password cannot be blank']
-    }
-  },
-  methods: {
-    async login() {
-      const { valid } = await this.$refs.loginForm.validate()
-      if (valid) {
-        this.loading = true
-        const authStore = useAuthStore()
-        //const alertStore = useAlertStore()
-        const snackbarStore = useSnackbarStore()
-        authStore
-          .login(this.email, this.password)
-          .then(() => {
-            //alertStore.success(this.username + ' is now logged in')
-            snackbarStore.success("Success! User '" + this.email + "' is now logged in.")
-          })
-          .catch((error) => {
-            //alertStore.error(error)
-            snackbarStore.error(error)
-          })
-          .finally(() => {
-            this.loading = false
-          })
-      }
-    }
-  }
+import InputText from 'primevue/inputtext'
+import Password from 'primevue/password'
+import { useToast } from 'primevue/usetoast'
+const toast = useToast()
+
+const email = ref('gdeeds@tegbiz.com')
+const password = ref('1234567890')
+
+async function login() {
+  const authStore = useAuthStore()
+  authStore
+    .login(email.value, password.value)
+    .then((email) => {
+      toast.add({ severity: 'success', summary: 'Login Successful', detail: email, life: 3000 })
+    })
+    .catch((error) => {
+      toast.add({ severity: 'error', summary: 'Error!', detail: error, life: 3000 })
+    })
 }
 </script>
