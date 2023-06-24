@@ -1,36 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import HomeView from '../views/HomeView.vue'
-import TestTaskList from '../views/TestTaskList.vue'
-import TestLogin from '../views/TestLogin.vue'
-import TestFormKit from '../views/TestFormKit.vue'
-import CesiumViewer from '../views/CesiumViewer.vue'
+import SceneControlsPanel from '@/components/panels/SceneControlsPanel.vue'
+import ServicesPanel from '@/components/panels/ServicesPanel.vue'
+import ThePlaceholder from '@/components/ThePlaceholder.vue'
 
 const routes = [
   {
-    name: 'home',
+    name: 'scene-controls',
+    path: '/controls',
+    component: SceneControlsPanel
+  },
+  {
+    name: 'services',
+    path: '/services',
+    component: ServicesPanel
+  },
+  {
+    name: 'placeholder',
     path: '/',
-    component: HomeView
-  },
-  {
-    name: 'CesiumViewer',
-    path: '/cesium',
-    component: CesiumViewer
-  },
-  {
-    name: 'list',
-    path: '/list',
-    component: TestTaskList
-  },
-  {
-    name: 'formkit',
-    path: '/formkit',
-    component: TestFormKit
-  },
-  {
-    name: 'login',
-    path: '/login',
-    component: TestLogin
+    component: ThePlaceholder
   }
 ]
 

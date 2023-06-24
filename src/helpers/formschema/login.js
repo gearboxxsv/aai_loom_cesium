@@ -14,6 +14,12 @@ export const mockSchema = [
     name: 'password',
     label: 'Password',
     validation: 'required'
+  },
+  {
+    type: 'meta',
+    data: {
+      someTestField: 'Access this elsewhere as $meta.someTestField'
+    }
   }
 ]
 

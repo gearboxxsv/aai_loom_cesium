@@ -1,18 +1,17 @@
-import { server } from '../server'
+import { server } from '@/server'
 import { defineStore } from 'pinia'
-// import { router } from '../router/index'
 
 export const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
     // initialize state from local storage to enable user to stay logged in
-    user: JSON.parse(localStorage.getItem('user')),
-    returnUrl: null
+    user: JSON.parse(localStorage.getItem('user'))
   }),
   actions: {
     // dummy code until server is working
     /*
     login(username, password) {
+      console.log('Credentials received')
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           // In this dummy code, username cannot be 'ryan', password must be 'password'
@@ -21,7 +20,9 @@ export const useAuthStore = defineStore({
           return resolve(true)
         }, 3000)
       })
-*/
+    }
+    */
+
     async login(email, password) {
       try {
         let user = await server.login({
@@ -44,19 +45,17 @@ export const useAuthStore = defineStore({
         console.log(error)
         throw Error(error.message)
       }
-    }
-    /*
+    },
+
     async logout() {
       try {
         await server.logout()
         this.user = null
         localStorage.removeItem('user')
-        router.push('/account/login')
       } catch (error) {
-        const alertStore = useAlertStore()
-        alertStore.error(error)
+        console.log(error)
+        throw Error(error.message)
       }
     }
-*/
   }
 })

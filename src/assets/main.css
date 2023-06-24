@@ -1,5 +1,6 @@
 body {
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: var(--font-family);
   color: var(--text-color);
   background: var(--surface-ground);
@@ -13,6 +14,23 @@ a {
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
   font-weight: bold;
+}
+
+.p-dialog-header {
+  display: none !important;
+}
+
+.p-dialog-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.p-tabview-panels {
+  padding: 3px !important;
+}
+
+.p-tabview-nav {
+  justify-content: flex-end;
 }
 
 @media (hover: hover) {

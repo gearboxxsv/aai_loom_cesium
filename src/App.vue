@@ -1,42 +1,24 @@
 <script setup>
-import { ref } from 'vue'
-import { RouterView } from 'vue-router'
-import Menubar from 'primevue/menubar';
-
-const items = ref([
-  {
-    label: 'Home',
-    to: { path: '/'}
-  },
-  {
-    label: 'Log In',
-    to: { path: '/login'}
-  },
-  {
-    label: 'FormKit Test',
-    to: { path: '/formkit'}
-  },
-  {
-    label: 'Cesium Viewer',
-    to: { path: '/cesium'}
-  }
-])
+import CesiumViewer from './views/CesiumViewer.vue'
 </script>
 
 <template>
-    <Menubar :model="items" />
-    <main>
-      <RouterView />
-      <PToast />
-    </main>
+  <main>
+    <CesiumViewer />
+    <PToast />
+  </main>
 </template>
 
 <style scoped>
 main {
-  display:flex;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  display: flex;
   flex-direction: column;
-  align-items:center;
-  justify-content:center;
+  align-items: center;
+  justify-content: center;
   background-color: black;
 }
 </style>

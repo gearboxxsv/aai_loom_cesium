@@ -13,6 +13,7 @@
     "@formkit/vue": "^0.18.0-d8042c7",
     "@sfxcode/formkit-primevue": "^1.1.5",
     "@turf/helpers": "^6.5.0",
+    "@turf/line-to-polygon": "^6.5.0",
     "axios": "^1.4.0",
     "cesium": "^1.105.2",
     "isomorphic-ws": "^5.0.0",

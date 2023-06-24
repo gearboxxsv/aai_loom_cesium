@@ -1,18 +1,21 @@
 <template>
-  <div v-if="loading">
-    <PSpinner />
-  </div>
   <div class="form-container" v-if="schema">
     <FormKit type="form" :value="formdata" @submit="submitForm">
       <FormKitSchema :schema="schema" />
     </FormKit>
   </div>
+  <div v-else>
+    <PSpinner />
+  </div>
+  <PDialog v-model:visible="showSpinner" modal position="center">
+    <PSpinner />
+  </PDialog>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { onMounted } from 'vue'
-import { server } from '../server'
+import { server } from '@/server'
 import { FormKitSchema } from '@formkit/vue'
 import { getNode } from '@formkit/core'
 import { useToast } from 'primevue/usetoast'
@@ -22,7 +25,7 @@ const formname = ref('elevationservice')
 const schema = ref(null)
 const formdata = ref(null)
 const submitMethod = ref('processForm')
-const loading = ref(true)
+const showSpinner = ref(false)
 
 onMounted(() => {
   server
@@ -36,6 +39,7 @@ onMounted(() => {
           submitMethod.value = data.submitMethod
           formdata.value = data.formdata
           if (formname.value == 'elevationservice') {
+            // autofill the fields with current position
             getLatLon()
           }
         })
@@ -46,12 +50,10 @@ onMounted(() => {
     .catch((error) => {
       console.log(error)
     })
-    .finally(() => {
-      loading.value = false
-    })
 })
 
 async function submitForm(formvalues) {
+  showSpinner.value = true
   server
     .connect()
     .then(() => {
@@ -73,6 +75,9 @@ async function submitForm(formvalues) {
     })
     .catch((error) => {
       console.log(error)
+    })
+    .finally(() => {
+      showSpinner.value = false
     })
 }
 
@@ -112,27 +117,6 @@ function getLatLon() {
     alert('Geolocation is not supported by this browser.')
   }
 }
-
-/*
-function getElevation() {
-  getElevationIsLoading.value = true
-  fetch(
-    'https://elevation.drf.aero/api/v1/lookup?locations=' + latitude.value + ',' + longitude.value
-  )
-    .then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          console.log(data.results[0])
-          elevation.value = data.results[0].elevation
-        })
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-      elevation.value = ['API ERROR!']
-    })
-}
-*/
 </script>
 
 <style scoped>
