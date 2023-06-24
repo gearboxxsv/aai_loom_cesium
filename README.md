@@ -1,3 +1,10 @@
+rev.06242023
+
+GIT SETUP 
+git remote add origin https://github.com/gearboxxsv/aai_loom_cesium.git
+git branch -M main
+git push -u origin main
+
 # aai-loom-mevn
 
 Created using the methods described in [this tutorial](https://appdividend.com/2022/10/27/mevn-stack/), modified somewhat using more up-to-date setup and config instructions from [the Vue.js Quick Start guide](https://vuejs.org/guide/quick-start.html#creating-a-vue-application), as well as a few other tweaks to update to ES6 code, especially in the server routing.
